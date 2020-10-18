@@ -1,20 +1,19 @@
-package ru.mail.homework2;
+package ru.mail.homework2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import java.util.List;
-
+import ru.mail.homework2.R;
+import ru.mail.homework2.adapter_bindet_logic.CubeList;
+import ru.mail.homework2.fragments.MainFragment;
+import ru.mail.homework2.fragments.NumberFragment;
+/*
+Main activity
+ */
 public class Homework2 extends AppCompatActivity {
     private final String MAIN_TAG = "maintag";
     private final String NUMBER_TAG = "numbertag";

@@ -1,4 +1,4 @@
-package ru.mail.homework2;
+package ru.mail.homework2.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,6 +18,14 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import ru.mail.homework2.adapter_bindet_logic.CubeList;
+import ru.mail.homework2.decorators.GridItemDecoration;
+import ru.mail.homework2.activities.Homework2;
+import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
+import ru.mail.homework2.R;
+/*
+Main fragment with recycler list
+ */
 public class MainFragment extends Fragment {
     private final String NEXT_POS = "Next Position";
     private int nextPosition = 100;

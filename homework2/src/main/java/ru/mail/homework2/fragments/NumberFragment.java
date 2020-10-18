@@ -1,4 +1,4 @@
-package ru.mail.homework2;
+package ru.mail.homework2.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import ru.mail.homework2.R;
+
+/*
+Fragment with the number when cube is pressed
+ */
 public class NumberFragment extends Fragment {
     private static final String NUMBER_KEY = "Text";
     private static final String COLOR_KEY = "Cube color";

@@ -1,4 +1,4 @@
-package ru.mail.homework2;
+package ru.mail.homework2.constants;
 
 import android.graphics.Color;
 

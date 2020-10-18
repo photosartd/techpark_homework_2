@@ -1,4 +1,4 @@
-package ru.mail.homework2;
+package ru.mail.homework2.adapter_bindet_logic;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,6 +6,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import ru.mail.homework2.R;
+import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
+/*
+Holder for recycler list data
+ */
 public class CubeViewHolder extends RecyclerView.ViewHolder {
 
     private final NewAdapter.ActionListener actionListener;

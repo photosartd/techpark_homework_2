@@ -1,15 +1,18 @@
-package ru.mail.homework2;
+package ru.mail.homework2.adapter_bindet_logic;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import ru.mail.homework2.R;
 
+/*
+Adapter for recycler list
+ */
 public class NewAdapter extends RecyclerView.Adapter<CubeViewHolder> {
 
     private List<CubeList.CubeData> mData;
