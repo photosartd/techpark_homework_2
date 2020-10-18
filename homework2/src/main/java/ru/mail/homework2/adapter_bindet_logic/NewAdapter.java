@@ -16,7 +16,7 @@ Adapter for recycler list
 public class NewAdapter extends RecyclerView.Adapter<CubeViewHolder> {
 
     private List<CubeList.CubeData> mData;
-    private ActionListener actionListener;
+    private final ActionListener actionListener;
 
     public NewAdapter(List<CubeList.CubeData> mData, ActionListener actionListener) {
         this.mData = mData;

@@ -1,11 +1,12 @@
 package ru.mail.homework2.adapter_bindet_logic;
 
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import ru.mail.homework2.constants.Constants;
+
 
 /*
 Generating data for cubes
@@ -13,8 +14,7 @@ Generating data for cubes
 public class CubeList {
     private static final CubeList instance = new CubeList();
     private final List<CubeData> list;
-    private Random random;
-    private static int next = 100;
+    private static int next = 101;
 
     public static CubeList getInstance() {return instance;}
 
@@ -24,28 +24,38 @@ public class CubeList {
     }
 
     private CubeList() {
-        random = new Random();
         list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 100; i++) {
             String text = String.valueOf(i);
-            int color = Constants.mColors[random.nextInt(Constants.mColors.length)];
+            int color;
+            if (i % 2 == 1) {
+                color = Color.RED;
+            }
+            else {
+                color = Color.BLUE;
+            }
             list.add(new CubeData(text, color));
         }
     }
 
     //For statical adding cubes with on button pressed
     public static void addRandomCube(List<CubeData> list) {
-        Random random = new Random();
         String text = String.valueOf(next);
-        int color = Constants.mColors[random.nextInt(Constants.mColors.length)];
+        int color;
+        if (next % 2 == 1) {
+            color = Color.RED;
+        }
+        else {
+            color = Color.BLUE;
+        }
         list.add(new CubeData(text, color));
         next++;
     }
 
     public static class CubeData {
 
-        private String text;
-        private int color;
+        private final String text;
+        private final int color;
 
         public CubeData(String text, int color) {
             this.text = text;

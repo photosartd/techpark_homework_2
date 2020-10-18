@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".fragments.NumberFragment">
+    tools:context=".fragments.NumberFragment"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/number_text"

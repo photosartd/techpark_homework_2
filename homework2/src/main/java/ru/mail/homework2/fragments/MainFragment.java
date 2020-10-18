@@ -1,6 +1,7 @@
 package ru.mail.homework2.fragments;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -69,10 +70,21 @@ public class MainFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         //setLayoutManager - where and how data of recyclerView will be placed
         //(inside activity_homework2)
-        RecyclerView.LayoutManager thisLayoutManager = new GridLayoutManager(getContext(), 3);
-        recyclerView.setLayoutManager(thisLayoutManager);
         int orientation = getResources().getConfiguration().orientation;
-        recyclerView.addItemDecoration(new GridItemDecoration(3, 20, false));
+        RecyclerView.LayoutManager thisLayoutManager;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            thisLayoutManager = new GridLayoutManager(getContext(), 3);
+        }
+        else  {
+            thisLayoutManager = new GridLayoutManager(getContext(), 4);
+        }
+        recyclerView.setLayoutManager(thisLayoutManager);
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            recyclerView.addItemDecoration(new GridItemDecoration(3, 20, false));
+        }
+        else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerView.addItemDecoration(new GridItemDecoration(4, 20, false));
+        }
         //adapters
         final NewAdapter adapter = new NewAdapter(data, new NewAdapter.ActionListener() {
             @Override
