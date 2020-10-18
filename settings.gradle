@@ -1,0 +1,4 @@
+include ':homework2'
+include ':lesson2'
+include ':app'
+rootProject.name = "techpark"
