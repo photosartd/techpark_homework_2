@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.mail.homework2.R;
 import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
+
 /*
 Holder for recycler list data
  */

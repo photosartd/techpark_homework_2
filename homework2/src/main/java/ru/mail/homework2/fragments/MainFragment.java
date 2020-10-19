@@ -24,6 +24,7 @@ import ru.mail.homework2.decorators.GridItemDecoration;
 import ru.mail.homework2.activities.Homework2;
 import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
 import ru.mail.homework2.R;
+
 /*
 Main fragment with recycler list
  */
@@ -74,15 +75,13 @@ public class MainFragment extends Fragment {
         RecyclerView.LayoutManager thisLayoutManager;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             thisLayoutManager = new GridLayoutManager(getContext(), 3);
-        }
-        else  {
+        } else {
             thisLayoutManager = new GridLayoutManager(getContext(), 4);
         }
         recyclerView.setLayoutManager(thisLayoutManager);
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             recyclerView.addItemDecoration(new GridItemDecoration(3, 20, false));
-        }
-        else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             recyclerView.addItemDecoration(new GridItemDecoration(4, 20, false));
         }
         //adapters

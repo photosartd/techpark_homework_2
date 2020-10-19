@@ -7,16 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 /*
 Generating data for cubes
  */
 public class CubeList {
-    private static final CubeList instance = new CubeList();
+    private static volatile CubeList instance;
     private final List<CubeData> list;
-    private static int next = 101;
 
-    public static CubeList getInstance() {return instance;}
+    public static CubeList getInstance() {
+        if (instance == null) {
+            synchronized (CubeList.class) {
+                if (instance == null) {
+                    instance = new CubeList();
+                }
+            }
+        }
+        return instance;
+    }
 
 
     public List<CubeData> getData() {
@@ -27,29 +34,17 @@ public class CubeList {
         list = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
             String text = String.valueOf(i);
-            int color;
-            if (i % 2 == 1) {
-                color = Color.RED;
-            }
-            else {
-                color = Color.BLUE;
-            }
+            int color = (i % 2 == 1)? Color.RED : Color.BLUE;
             list.add(new CubeData(text, color));
         }
     }
 
     //For statical adding cubes with on button pressed
     public static void addRandomCube(List<CubeData> list) {
+        int next = list.size() + 1;
         String text = String.valueOf(next);
-        int color;
-        if (next % 2 == 1) {
-            color = Color.RED;
-        }
-        else {
-            color = Color.BLUE;
-        }
+        int color = (next % 2 == 1)? Color.RED : Color.BLUE;
         list.add(new CubeData(text, color));
-        next++;
     }
 
     public static class CubeData {
