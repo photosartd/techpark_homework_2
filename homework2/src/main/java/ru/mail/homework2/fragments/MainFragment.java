@@ -20,6 +20,7 @@ import android.widget.Button;
 import java.util.List;
 
 import ru.mail.homework2.adapter_bindet_logic.CubeList;
+import ru.mail.homework2.constants.Constants;
 import ru.mail.homework2.decorators.GridItemDecoration;
 import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
 import ru.mail.homework2.R;
@@ -40,8 +41,6 @@ public class MainFragment extends Fragment {
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -68,12 +67,9 @@ public class MainFragment extends Fragment {
         //Get data
         data = CubeList.getData();
 
-        if (context instanceof Activity) {
-            Activity a = (Activity) context;
-            if (a instanceof NewAdapter.ActionListener) {
-                NewAdapter.ActionListener actionListener = ((NewAdapter.ActionListener) a);
-                adapter = new NewAdapter(data, actionListener);
-            }
+        if (context instanceof NewAdapter.ActionListener) {
+            NewAdapter.ActionListener actionListener = ((NewAdapter.ActionListener) context);
+            adapter = new NewAdapter(data, actionListener);
         }
     }
 
@@ -89,15 +85,17 @@ public class MainFragment extends Fragment {
         int orientation = getResources().getConfiguration().orientation;
         RecyclerView.LayoutManager thisLayoutManager;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            thisLayoutManager = new GridLayoutManager(getContext(), 3);
+            thisLayoutManager = new GridLayoutManager(getContext(), Constants.SPAN_COUNT_PORTRAIT);
         } else {
-            thisLayoutManager = new GridLayoutManager(getContext(), 4);
+            thisLayoutManager = new GridLayoutManager(getContext(), Constants.SPAN_COUNT_LANDSCAPE);
         }
         recyclerView.setLayoutManager(thisLayoutManager);
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            recyclerView.addItemDecoration(new GridItemDecoration(3, 20, false));
+            recyclerView.addItemDecoration(new GridItemDecoration(Constants.SPAN_COUNT_PORTRAIT,
+                    Constants.SPACING_PX, Constants.INCLUDE_EDGE));
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerView.addItemDecoration(new GridItemDecoration(4, 20, false));
+            recyclerView.addItemDecoration(new GridItemDecoration(Constants.SPAN_COUNT_LANDSCAPE,
+                    Constants.SPACING_PX, Constants.INCLUDE_EDGE));
         }
         //adapters
         recyclerView.setAdapter(adapter);
