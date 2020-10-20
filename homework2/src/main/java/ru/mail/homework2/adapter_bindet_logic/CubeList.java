@@ -12,7 +12,16 @@ Generating data for cubes
  */
 public class CubeList {
     private static volatile CubeList instance;
-    private final List<CubeData> list;
+    private static final List<CubeData> list;
+
+    static {
+        list = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            String text = String.valueOf(i);
+            int color = (i % 2 == 1) ? Color.RED : Color.BLUE;
+            list.add(new CubeData(text, color));
+        }
+    }
 
     public static CubeList getInstance() {
         if (instance == null) {
@@ -26,24 +35,18 @@ public class CubeList {
     }
 
 
-    public List<CubeData> getData() {
+    public static List<CubeData> getData() {
         return list;
     }
 
     private CubeList() {
-        list = new ArrayList<>();
-        for (int i = 1; i <= 100; i++) {
-            String text = String.valueOf(i);
-            int color = (i % 2 == 1)? Color.RED : Color.BLUE;
-            list.add(new CubeData(text, color));
-        }
     }
 
     //For statical adding cubes with on button pressed
-    public static void addRandomCube(List<CubeData> list) {
+    public static void addRandomCube() {
         int next = list.size() + 1;
         String text = String.valueOf(next);
-        int color = (next % 2 == 1)? Color.RED : Color.BLUE;
+        int color = (next % 2 == 1) ? Color.RED : Color.BLUE;
         list.add(new CubeData(text, color));
     }
 

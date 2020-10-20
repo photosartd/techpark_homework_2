@@ -8,12 +8,14 @@ import android.os.Bundle;
 
 import ru.mail.homework2.R;
 import ru.mail.homework2.adapter_bindet_logic.CubeList;
+import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
 import ru.mail.homework2.fragments.MainFragment;
 import ru.mail.homework2.fragments.NumberFragment;
+
 /*
 Main activity
  */
-public class Homework2 extends AppCompatActivity {
+public class Homework2 extends AppCompatActivity implements NewAdapter.ActionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class Homework2 extends AppCompatActivity {
         }
     }
 
-    public void showNumberFragment(CubeList.CubeData cube) {
+    private void showNumberFragment(CubeList.CubeData cube) {
         FragmentManager fm = getSupportFragmentManager();
         NumberFragment numberFragment = NumberFragment.newInstance(cube.getText(), cube.getColor());
         String NUMBER_TAG = "numbertag";
@@ -50,5 +52,10 @@ public class Homework2 extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onItemClick(int id) {
+        showNumberFragment(CubeList.getData().get(id));
     }
 }

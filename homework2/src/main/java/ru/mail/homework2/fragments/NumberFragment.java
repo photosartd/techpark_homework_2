@@ -39,9 +39,9 @@ public class NumberFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.number_parent).setBackgroundColor(color);
         TextView numberTextView = view.findViewById(R.id.number_text);
         numberTextView.setText(text);
+        numberTextView.setTextColor(color);
     }
 
     @Override
