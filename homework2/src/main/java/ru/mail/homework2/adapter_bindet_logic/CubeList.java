@@ -39,6 +39,14 @@ public class CubeList {
         return list;
     }
 
+    public static void addToListUntil(int lastElement) {
+        for (int i = list.size() + 1; i <= lastElement; i++) {
+            String text = String.valueOf(i);
+            int color = (i % 2 == 1) ? Color.RED : Color.BLUE;
+            list.add(new CubeList.CubeData(text, color));
+        }
+    }
+
     private CubeList() {
     }
 

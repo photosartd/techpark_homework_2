@@ -53,12 +53,7 @@ public class Homework2 extends AppCompatActivity implements NewAdapter.ActionLis
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState.containsKey(LAST_ELEMENT_BEFORE_KILL)) {
             int lastElement = savedInstanceState.getInt(LAST_ELEMENT_BEFORE_KILL);
-            List<CubeList.CubeData> data = CubeList.getData();
-            for (int i = data.size() + 1; i <= lastElement; i++) {
-                String text = String.valueOf(i);
-                int color = (i % 2 == 1) ? Color.RED : Color.BLUE;
-                data.add(new CubeList.CubeData(text, color));
-            }
+            CubeList.addToListUntil(lastElement);
         }
     }
 
