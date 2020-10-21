@@ -1,6 +1,5 @@
 package ru.mail.homework2.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -37,11 +36,6 @@ public class MainFragment extends Fragment {
     public MainFragment() {
         // Required empty public constructor
         Log.d("MainFragmentCreated", "Created");
-    }
-
-    public static MainFragment newInstance() {
-        MainFragment fragment = new MainFragment();
-        return fragment;
     }
 
     @Override

@@ -1,10 +1,15 @@
 package ru.mail.homework2.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+
+import java.util.List;
 
 import ru.mail.homework2.R;
 import ru.mail.homework2.adapter_bindet_logic.CubeList;
@@ -16,6 +21,7 @@ import ru.mail.homework2.fragments.NumberFragment;
 Main activity
  */
 public class Homework2 extends AppCompatActivity implements NewAdapter.ActionListener {
+    private final String LAST_ELEMENT_BEFORE_KILL = "Last element";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +30,7 @@ public class Homework2 extends AppCompatActivity implements NewAdapter.ActionLis
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        MainFragment mainFragment = MainFragment.newInstance();
+        MainFragment mainFragment = new MainFragment();
         //это делаем если только savedInstanceState == null
         if (getSupportFragmentManager().findFragmentById(R.id.content_parent) == null) {
             String MAIN_TAG = "maintag";
@@ -32,6 +38,27 @@ public class Homework2 extends AppCompatActivity implements NewAdapter.ActionLis
                     .beginTransaction()
                     .add(R.id.content_parent, mainFragment, MAIN_TAG)
                     .commit();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int lastElement = CubeList.getData().size();
+        outState.putInt(LAST_ELEMENT_BEFORE_KILL, lastElement);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey(LAST_ELEMENT_BEFORE_KILL)) {
+            int lastElement = savedInstanceState.getInt(LAST_ELEMENT_BEFORE_KILL);
+            List<CubeList.CubeData> data = CubeList.getData();
+            for (int i = data.size() + 1; i <= lastElement; i++) {
+                String text = String.valueOf(i);
+                int color = (i % 2 == 1) ? Color.RED : Color.BLUE;
+                data.add(new CubeList.CubeData(text, color));
+            }
         }
     }
 
