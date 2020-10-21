@@ -2,6 +2,7 @@ package ru.mail.homework2.fragments;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import java.util.List;
+import java.util.Objects;
 
 import ru.mail.homework2.adapter_bindet_logic.CubeList;
-import ru.mail.homework2.constants.Constants;
 import ru.mail.homework2.decorators.GridItemDecoration;
 import ru.mail.homework2.adapter_bindet_logic.NewAdapter;
 import ru.mail.homework2.R;
@@ -78,18 +79,19 @@ public class MainFragment extends Fragment {
         //(inside activity_homework2)
         int orientation = getResources().getConfiguration().orientation;
         RecyclerView.LayoutManager thisLayoutManager;
+        Resources res = Objects.requireNonNull(getContext()).getResources();
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            thisLayoutManager = new GridLayoutManager(getContext(), Constants.SPAN_COUNT_PORTRAIT);
+            thisLayoutManager = new GridLayoutManager(getContext(), res.getInteger(R.integer.span_count_portrait));
         } else {
-            thisLayoutManager = new GridLayoutManager(getContext(), Constants.SPAN_COUNT_LANDSCAPE);
+            thisLayoutManager = new GridLayoutManager(getContext(), res.getInteger(R.integer.span_count_landscape));
         }
         recyclerView.setLayoutManager(thisLayoutManager);
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            recyclerView.addItemDecoration(new GridItemDecoration(Constants.SPAN_COUNT_PORTRAIT,
-                    Constants.SPACING_PX, Constants.INCLUDE_EDGE));
+            recyclerView.addItemDecoration(new GridItemDecoration(res.getInteger(R.integer.span_count_portrait),
+                    res.getInteger(R.integer.spacing_px), res.getBoolean(R.bool.include_edge)));
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerView.addItemDecoration(new GridItemDecoration(Constants.SPAN_COUNT_LANDSCAPE,
-                    Constants.SPACING_PX, Constants.INCLUDE_EDGE));
+            recyclerView.addItemDecoration(new GridItemDecoration(res.getInteger(R.integer.span_count_landscape),
+                    res.getInteger(R.integer.spacing_px), res.getBoolean(R.bool.include_edge)));
         }
         //adapters
         recyclerView.setAdapter(adapter);

@@ -13,10 +13,11 @@ Generating data for cubes
 public class CubeList {
     private static volatile CubeList instance;
     private static final List<CubeData> list;
+    private static final int startingCubesNumber = 100;
 
     static {
         list = new ArrayList<>();
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= startingCubesNumber; i++) {
             String text = String.valueOf(i);
             int color = (i % 2 == 1) ? Color.RED : Color.BLUE;
             list.add(new CubeData(text, color));

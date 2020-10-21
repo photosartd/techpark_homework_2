@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="span_count_portrait">3</integer>
+    <integer name="span_count_landscape">4</integer>
+    <integer name="spacing_px">20</integer>
+</resources>
